@@ -10,6 +10,8 @@ Credits:
 * Dice Loss implementation: [missing, find it later]()
 * Weighted Loss implementation: [@jaidevd](https://jaidevd.github.io/posts/weighted-loss-functions-for-instance-segmentation/)
 
+`PRML_Report.md` is the project report (in Chinese).
+
 ## Project Structure
 * `_credit/`: all credited codes and licenses
   * `README_unet.md`: readme file for unet implementation, the author addressed some important issues with respect to U-Net architecture, good to read.
