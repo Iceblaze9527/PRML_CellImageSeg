@@ -12,6 +12,19 @@ Credits:
 
 `PRML_Report.md` is the project report (in Chinese).
 
+## Notice: Possible Bugs and Other Suggestions
+These are the bugs (and bad code writing) that I've faced when adapting the project to a new task. So please use this mess with care! (my bad for not fixing them since it's a closed project)
+
+* `continue.ipynb`: remember sending your model to GPU before initializing optimizer
+* `Oper.py`: the `pad=0` case will face a bug, that is, the slicing operation will return 0 on the corresponding dims
+* `Oper.py`: keep an eye on your losses and eval criteria. 
+  * Specifically, I suggest using `.mean()` as reduction method instead of `.sum()` to adapt to all possible sizes of dataset. Same for the eval criteria. 
+  * Besides, when calculating the mean losses and iou index (or whatever metrics you prefer), __be sure to examine its relationship with your batch size__. I only considered `batch_size=1` in my case.
+* `Oper.py`: `torch.autograd.detect_anomaly()` is suggested for debugging only
+* `DG.py`: Suggest using `imgaug` instead of `opencv` for more efficient code reusing (do not need a new class for a single aug method)
+* `DG.py`: Suggest reshaping images to size `C*H*W` and labels to `H*W` here instead of using PyTorch `squeeze()` and/or `unsqueeze()` in `Oper.py`
+* Btw the project codes are not conformed to the convention of Python nomenclature tho...
+
 ## Project Structure
 * `_credit/`: all credited codes and licenses
   * `README_unet.md`: readme file for unet implementation, the author addressed some important issues with respect to U-Net architecture, good to read.
